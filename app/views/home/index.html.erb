@@ -1,0 +1,38 @@
+<% if member_signed_in? %>
+
+<h3>you have succesfully signed in</h3>
+<%= link_to "Sign Out",  destroy_member_session_path , :method => :delete %>
+
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<body bg-color ="red">
+<h1>Your Proffesional Catalog</h1>
+<% @products.each do |product| %>
+<div class="entry">
+<%= image_tag(product.image_url) %>
+
+<h3><%= product.title %></h3>
+<%= link_to "Specifications", "http://www.apple.com/in/iphone-6s/specs/" , { :foo => "bar" } %>
+
+<%=sanitize product.description %>
+<div class="price_line">
+<span class="price" ><%= product.price %>
+</span>
+<%= button_to 'Add to Cart', line_items_path(:product_id => product) %>
+
+<%= button_to 'Place Order' , new_order_path  , :method => :get%>
+</div>
+</div>
+<% end %>
+
+<% else %>
+
+<h1> welcome to Sedin community</h1>
+<div>
+<%= link_to "Sign In", new_member_session_path, :method => :get %> &nbsp&nbsp
+<%= link_to "Sign up", new_member_registration_path, :method => :get %>
+</div>
+<% end %>
+</body>

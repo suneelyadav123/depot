@@ -1,0 +1,55 @@
+<%= form_for @order do |f|  %>
+<% if @order.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(@order.errors.count, "error" ) %>
+prohibited this order from being saved:</h2>
+<ul>
+<% @order.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+<fieldset>
+  <legend><b><i>
+Enter Your Details</i> </b>
+  </legend>
+<div>
+<%= f.label :name, "Name:" %>&nbsp&nbsp
+<%= f.text_field :name,  :size => 40 %>
+</div> <br>
+<div>
+<%= f.label :address, "Address:" %><br> &nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= f.text_area :address, :rows => 3, :cols => 40 %>
+</div> <br>
+<div>
+<%= f.label :email, "E-Mail:" %>
+<%= f.email_field :email, :size => 40 %>
+</div><br>
+<div>
+<%= f.label :number , "Number:" %>
+<%= f.number_field :number %>
+</div> <br>
+<div>
+<%= f.label :pay_type, "Pay with:" %>
+<%=
+f.select :pay_type,
+Order::PAYMENT_TYPES,
+:prompt => "Select a payment method"
+%> 
+</div> <br>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" >
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">  
+<%= link_to 'Continue Shopping ' , stores_url %>
+<br>
+
+</fieldset>
+
+
+</form>
+
+<% end %>

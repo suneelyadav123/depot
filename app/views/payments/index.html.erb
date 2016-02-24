@@ -1,0 +1,28 @@
+<%= form_for @payment do |f| %>
+
+<feildset>
+	<legend>
+		Payment Details </legend>
+<div>
+	<%= f. label :name , 'Enter Name on Card' %>
+	<%= f.text_field :name %>
+</div>
+<div>
+	<%= f.label :number , 'Enter Card Number' %>
+    <%= f.number_field :number %>
+    </div>
+
+    <div>
+	<%= f.label :number , 'Enter Card Number' %>
+    <%= f.number_field :number %>
+    </div>
+    <div>
+	<%= f.label :month , 'Month' %>
+    <%= f.number_field :month %>
+    </div>
+
+    <div>
+    <%= f.submit "Pay " %>
+</div>
+	</feildset>
+	<% end %>
